@@ -5,6 +5,9 @@ using UnityEngine;
 public class AutoAgent : Agent
 {
     [SerializeField] Perception perception;
+    [SerializeField] Steering steering;
+    public float maxSpeed;
+    public float maxForce;
 
     public Vector3 Velocity { get; set; } = Vector3.zero;
 
@@ -15,10 +18,10 @@ public class AutoAgent : Agent
         GameObject[] gameObjects = perception.GetGameObjects();
         if(gameObjects.Length != 0)
         {
-            Debug.DrawLine(transform.position, gameObjects[0].transform.position, Color.magenta);
+            Debug.DrawLine(transform.position, gameObjects[0].transform.position, Color.red);
 
-            Vector3 force = transform.position - gameObjects[0].transform.position;
-            acceleration += force.normalized * 3;
+            Vector3 force = steering.Flee(this, gameObjects[0]);
+            acceleration += force;
         } else
         {
             acceleration = Vector3.zero;
@@ -26,6 +29,12 @@ public class AutoAgent : Agent
         }
 
         Velocity += acceleration * Time.deltaTime;
+        Velocity = Vector3.ClampMagnitude(Velocity, maxSpeed);
         transform.position += Velocity * Time.deltaTime;
+
+        if(Velocity.sqrMagnitude > 0.1f)
+        {
+            transform.rotation = Quaternion.LookRotation(Velocity);
+        }
     }
 }
