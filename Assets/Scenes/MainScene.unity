@@ -236,8 +236,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Player
-  radius: 10
-  maxAngle: 0
+  radius: 5
+  maxAngle: 180
 --- !u!114 &20838333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,8 +252,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   perception: {fileID: 20838332}
   steering: {fileID: 20838334}
-  maxSpeed: 4
-  maxForce: 4
+  maxSpeed: 2
+  maxForce: 2
 --- !u!114 &20838334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +266,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ae5424eb3383f48a9d18d30b94ca35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wanderDistance: 1
+  wanderRadius: 3
+  wanderDisplacement: 5
 --- !u!1 &133022913
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,10 +22,9 @@ public class AutoAgent : Agent
 
             Vector3 force = steering.Flee(this, gameObjects[0]);
             acceleration += force;
-        } else
+        } else if(gameObjects.Length == 0)
         {
-            acceleration = Vector3.zero;
-            Velocity = Vector3.zero;
+            acceleration += steering.Wander(this);
         }
 
         Velocity += acceleration * Time.deltaTime;
@@ -36,5 +35,7 @@ public class AutoAgent : Agent
         {
             transform.rotation = Quaternion.LookRotation(Velocity);
         }
+
+        transform.position = Utilities.Wrap(transform.position, new Vector3(-10, -10, -10), new Vector3(10, 10, 10));
     }
 }
