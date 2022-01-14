@@ -14,6 +14,8 @@ public class DistancePerception : Perception
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
         foreach(Collider col in colliders)
         {
+            if (col.gameObject == gameObject) continue;
+
             if (tagName == "" || col.CompareTag(tagName))
             {
                 Vector3 direction = (col.transform.position - transform.position).normalized;

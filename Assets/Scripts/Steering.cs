@@ -26,13 +26,57 @@ public class Steering : MonoBehaviour
         wanderAngle += Random.Range(-wanderDisplacement, wanderDisplacement);
         Quaternion rotation = Quaternion.AngleAxis(wanderAngle, Vector3.up);
         Vector3 point = rotation * (Vector3.forward * wanderRadius);
-        Vector3 forward = agent.transform.position * wanderDistance;
+        Vector3 forward = agent.transform.forward * wanderDistance;
 
         Vector3 force = CalculateSteering(agent, (forward + point));
         return force;
     }
 
-    Vector3 CalculateSteering(AutoAgent agent, Vector3 vector)
+    public Vector3 Cohesion(AutoAgent agent, GameObject[] targets)
+    {
+        Vector3 centerOfTargets = Vector3.zero;
+        foreach(GameObject target in targets)
+        {
+            centerOfTargets += target.transform.position;
+        }
+
+        centerOfTargets /= targets.Length;
+
+        Vector3 force = CalculateSteering(agent, centerOfTargets - agent.transform.position);
+        return force;
+    }
+
+    public Vector3 Separation(AutoAgent agent, GameObject[] targets, float radius)
+    {
+        Vector3 separation = Vector3.zero;
+        foreach (GameObject target in targets)
+        {
+            Vector3 direction = (agent.transform.position - target.transform.position);
+            if (direction.magnitude < radius)
+            {
+                separation += direction / direction.sqrMagnitude;
+            }
+        }
+
+        Vector3 force = CalculateSteering(agent, separation);
+        return force;
+    }
+
+    public Vector3 Alignment(AutoAgent agent, GameObject[] targets)
+    {
+        Vector3 averageVelocity = Vector3.zero;
+        foreach (GameObject target in targets)
+        {
+            averageVelocity += target.GetComponent<AutoAgent>().Velocity;
+        }
+
+        averageVelocity /= targets.Length;
+
+        Vector3 force = CalculateSteering(agent, averageVelocity);
+        return force;
+    }
+
+    public Vector3 CalculateSteering(AutoAgent agent, Vector3 vector)
     {
         Vector3 direction = vector.normalized;
         Vector3 desired = direction * agent.maxSpeed;
