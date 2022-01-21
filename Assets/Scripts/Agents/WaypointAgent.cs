@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SearchAgent : Agent
+public class WaypointAgent : Agent
 {
     [SerializeField] protected Node initialNode;
 
@@ -15,7 +15,7 @@ public class SearchAgent : Agent
 
     void Update()
     {
-        if(targetNode != null)
+        if (targetNode != null)
         {
             movement.MoveTowards(targetNode.transform.position);
         }

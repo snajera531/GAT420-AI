@@ -9,15 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2474550420537584381}
-  - component: {fileID: 1114165196867266418}
+  - component: {fileID: 4397334065702420162}
   - component: {fileID: 409382175058811582}
   - component: {fileID: 2474550420537584380}
   - component: {fileID: 2474550420537584383}
   - component: {fileID: 2474550420537584382}
   - component: {fileID: 7788847716435145328}
   m_Layer: 0
-  m_Name: SearchAgent
-  m_TagString: SearchAgent
+  m_Name: WaypointAgent
+  m_TagString: WaypointAgent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,7 +37,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1114165196867266418
+--- !u!114 &4397334065702420162
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2474550420537584369}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2209e567509e2944a88a3cc833a76d15, type: 3}
+  m_Script: {fileID: 11500000, guid: 26a1f6326c59b274faf70da0473aacb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {fileID: 409382175058811582}
@@ -91,7 +91,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0e6ebd08a1268ed46ae8bca8cc35cc15, type: 2}
+  - {fileID: 2100000, guid: fd4481dbc37fb504b9b6e17773f09f5d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
