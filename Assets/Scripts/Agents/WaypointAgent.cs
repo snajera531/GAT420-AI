@@ -2,22 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaypointAgent : Agent
+public class WaypointAgent : SearchAgent
 {
-    [SerializeField] protected Node initialNode;
-
-    public Node targetNode { get; set; }
-
     void Start()
     {
-        targetNode = initialNode;
-    }
-
-    void Update()
-    {
-        if (targetNode != null)
-        {
-            movement.MoveTowards(targetNode.transform.position);
-        }
+        //targetNode = (initialNode != null) ? initialNode : WaypointNode.GetRandomWaypoint();
+        targetNode = (initialNode != null) ? initialNode : Node.GetRandomNode<WaypointNode>();
     }
 }

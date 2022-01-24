@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 363286993342619269}
-  - component: {fileID: 5676782973700462347}
   - component: {fileID: 8538985665614523035}
   - component: {fileID: 6687190712376882840}
   - component: {fileID: 4530810765444843223}
+  - component: {fileID: 5363986225823739537}
   m_Layer: 8
   m_Name: GraphNode
   m_TagString: Untagged
@@ -34,18 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5676782973700462347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4714800245824877345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9569274c20cb0ff4b9d0c1f7f580a28d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!33 &8538985665614523035
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -108,3 +96,15 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5363986225823739537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4714800245824877345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f9d7d1a1d8afc5418256f1efdcd781a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
