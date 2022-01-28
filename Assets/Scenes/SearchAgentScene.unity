@@ -376,6 +376,7 @@ MonoBehaviour:
   steps: 0
   nodeSelector: {fileID: 433082291}
   searchType: 0
+  visible: 1
   info: 
 --- !u!4 &433082293
 Transform:
@@ -2255,7 +2256,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agents:
   - {fileID: 2474550420537584379, guid: 06f0d4cac52c4124eb2830b6d01a7a9e, type: 3}
-  - {fileID: 0}
   - {fileID: 1114165196867266418, guid: f383cf32d7f18844c90528c52e01c3c9, type: 3}
   layerMask:
     serializedVersion: 2
