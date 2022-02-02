@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2202841633174768395}
   - component: {fileID: 2202841633174768396}
   - component: {fileID: 2202841633174768397}
-  - component: {fileID: 2628546973071142989}
+  - component: {fileID: 5535487056459678268}
   m_Layer: 0
   m_Name: WaypointNode
   m_TagString: Untagged
@@ -96,7 +96,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2628546973071142989
+--- !u!114 &5535487056459678268
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2202841633174768399}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e901e726af5d6b64cb144f68b5296030, type: 3}
+  m_Script: {fileID: 11500000, guid: e0b2e8b595138024c865443a45d96650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nextWaypoints: []

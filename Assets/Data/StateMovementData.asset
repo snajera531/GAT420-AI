@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: StateMovementData
   m_EditorClassIdentifier: 
   minSpeed: 2
-  maxSpeed: 6
+  maxSpeed: 4
   maxForce: 60
+  turnRate: 360
   orientToMovement: 1
