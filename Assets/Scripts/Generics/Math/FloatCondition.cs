@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloatTransition : Transition
+public class FloatCondition : Condition
 {
 	FloatRef parameter;
 	float condition;
 	Predicate predicate;
 
-	public FloatTransition(FloatRef parameter, Predicate predicate, float condition)
+	public FloatCondition(FloatRef parameter, Predicate predicate, float condition)
 	{
 		this.parameter = parameter;
 		this.predicate = predicate;
 		this.condition = condition;
 	}
 
-	public override bool ToTransition()
+	public override bool IsTrue()
 	{
 		bool result = false;
 
@@ -27,8 +27,14 @@ public class FloatTransition : Transition
 			case Predicate.LESS:
 				result = (parameter < condition);
 				break;
+			case Predicate.LESS_EQUAL:
+				result = (parameter <= condition);
+				break;
 			case Predicate.GREATER:
 				result = (parameter > condition);
+				break;
+			case Predicate.GREATER_EQUAL:
+				result = (parameter >= condition);
 				break;
 			default:
 				break;

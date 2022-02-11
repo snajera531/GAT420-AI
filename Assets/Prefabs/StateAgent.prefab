@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2474550420537584381}
   - component: {fileID: 7110997049788416106}
   - component: {fileID: 3085864949027479688}
+  - component: {fileID: 2083462356465284628}
+  - component: {fileID: 7359237955949524896}
   - component: {fileID: 2474550420537584380}
   - component: {fileID: 2474550420537584383}
   - component: {fileID: 2474550420537584382}
@@ -35,6 +37,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1326783217750546002}
+  - {fileID: 6184748924201631417}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50,7 +53,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7caf256af441a7844976ac14cf547dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 4938622064702868520}
   movement: {fileID: 3085864949027479688}
+  perception: {fileID: 7359237955949524896}
+  pathFollower: {fileID: 2083462356465284628}
+  enemySeen:
+    value: 0
+  enemyDistance:
+    value: 0
+  health:
+    value: 100
+  timer:
+    value: 0
+  enemy: {fileID: 0}
 --- !u!114 &3085864949027479688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +79,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementData: {fileID: 11400000, guid: 3c2eb677eb3efb14491f13726059758c, type: 2}
+--- !u!114 &2083462356465284628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2474550420537584369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3696bf40d662adc44911d2db382080b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathNodes: {fileID: 0}
+--- !u!114 &7359237955949524896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2474550420537584369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281f9e25b9b7ae34e859ccedb4c14f47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagName: Player
+  distance: 8
+  angle: 80
+  sphereCastTransform: {fileID: 6184748924201631417}
+  numSphereCast: 20
+  radius: 0.2
 --- !u!33 &2474550420537584380
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -165,6 +211,36 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!1 &5030958879996392380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6184748924201631417}
+  m_Layer: 0
+  m_Name: Eye
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6184748924201631417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5030958879996392380}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.65, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2474550420537584381}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1577129806301360569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -220,10 +296,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ch36_nonPBR
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 7e2308c3411ca8e4da79a7b75653d790, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 27fa650b400c5f245996834e782ce75f, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 7e2308c3411ca8e4da79a7b75653d790, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e2308c3411ca8e4da79a7b75653d790, type: 3}
 --- !u!4 &1326783217750546002 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7e2308c3411ca8e4da79a7b75653d790, type: 3}
+  m_PrefabInstance: {fileID: 1577129806301360569}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4938622064702868520 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 7e2308c3411ca8e4da79a7b75653d790, type: 3}
   m_PrefabInstance: {fileID: 1577129806301360569}
   m_PrefabAsset: {fileID: 0}

@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleState : State
+public class ChaseState : State
 {
-    public IdleState(StateAgent _owner, string _name) : base(_owner, _name) { }
+    public ChaseState(StateAgent _owner, string _name) : base(_owner, _name) { }
 
     public override void OnEnter()
     {
-        Owner.movement.Stop();
-        Owner.timer.value = 2;
+        Owner.movement.Resume();
     }
 
     public override void OnExit()
@@ -18,5 +17,6 @@ public class IdleState : State
 
     public override void OnUpdate()
     {
+        Owner.movement.MoveTowards(Owner.enemy.transform.position);
     }
 }
