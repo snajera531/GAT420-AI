@@ -21,10 +21,5 @@ public class IdleState : State
     public override void OnUpdate()
     {
         Owner.timer.value -= Time.deltaTime;
-
-        if (Owner.timer <= 0)
-        {
-            Owner.stateMachine.SetState(Owner.stateMachine.StateFromName("patrol"));
-        }
     }
 }

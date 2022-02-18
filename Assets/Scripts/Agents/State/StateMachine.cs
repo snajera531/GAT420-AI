@@ -15,6 +15,7 @@ public class StateMachine
         var transitions = stateTransitions[currentState];
         foreach(var transition in transitions)
         {
+            Debug.Log(transition.Key.ToTransition());
             if (transition.Key.ToTransition())
             {
                 SetState(transition.Value);
@@ -28,7 +29,7 @@ public class StateMachine
 
     public void SetState(State newState)
     {
-        if (newState == null || currentState == null || newState == currentState) return;
+        if (newState == null || newState == currentState) return;
 
         currentState?.OnExit();
         currentState = newState;
@@ -58,6 +59,10 @@ public class StateMachine
         {
             var transitions = stateTransitions[StateFromName(stateFrom)];
             transitions.Add(new KeyValuePair<Transition, State>(transition, StateFromName(stateTo)));
+        }
+        else
+        {
+            Debug.Log("no transition");
         }
     }
 

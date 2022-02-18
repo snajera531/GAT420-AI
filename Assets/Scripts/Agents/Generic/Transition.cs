@@ -8,17 +8,16 @@ public class Transition
 
     public Transition(Condition[] _conditions)
     {
-        _conditions = conditions;
+        conditions = _conditions;
     }
 
     public bool ToTransition()
     {
-        bool transition = false;
         foreach(var condition in conditions)
         {
             if (!condition.IsTrue()) return false;
         }
 
-        return transition;
+        return true;
     }
 }
