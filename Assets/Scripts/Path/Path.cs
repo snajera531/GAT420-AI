@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Assertions;
+using System.Collections;
+using UnityEngine;
 
 public class Path : MonoBehaviour
 {

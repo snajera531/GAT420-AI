@@ -8,6 +8,7 @@ public class AttackState : State
 
     public override void OnEnter()
     {
+        Owner.GetComponent<AgentDamage>().Damage();
         Owner.movement.Stop();
         Owner.animator.SetTrigger("Punch");
         Owner.timer.value = 1;

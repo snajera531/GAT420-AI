@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class StateMachine
@@ -28,7 +28,7 @@ public class StateMachine
 
     public void SetState(State newState)
     {
-        if (currentState == null || newState == null) return;
+        if (newState == null || currentState == null || newState == currentState) return;
 
         currentState?.OnExit();
         currentState = newState;
@@ -43,14 +43,14 @@ public class StateMachine
         }
     }
 
-    public void AddTransition(State stateFrom, Transition transition, State stateTo)
+/*    public void AddTransition(State stateFrom, Transition transition, State stateTo)
     {
         if (stateTransitions.ContainsKey(stateFrom))
         {
             var transitions = stateTransitions[stateFrom];
             transitions.Add(new KeyValuePair<Transition, State>(transition, stateTo));
         }
-    }
+    }*/
 
     public void AddTransition(string stateFrom, Transition transition, string stateTo)
     {

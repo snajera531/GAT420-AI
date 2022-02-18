@@ -6,9 +6,15 @@ using UnityEngine;
 [RequireComponent(typeof(NavMeshMovement))]
 public class NavMeshMovement : Movement
 {
+    public override Vector3 Destination { get => navMeshAgent.destination; set => navMeshAgent.destination = value; }
     public override Vector3 Velocity { get => navMeshAgent.velocity; set => navMeshAgent.velocity = value; }
 
     [SerializeField] NavMeshAgent navMeshAgent;
+
+    private void Start()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+    }
 
     void Update()
     {
@@ -17,10 +23,7 @@ public class NavMeshMovement : Movement
         navMeshAgent.angularSpeed = movementData.turnRate;
     }
 
-    public override void ApplyForce(Vector3 force)
-    {
-        
-    }
+    public override void ApplyForce(Vector3 force) { }
 
     public override void MoveTowards(Vector3 target)
     {

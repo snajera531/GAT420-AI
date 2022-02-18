@@ -10,9 +10,10 @@ public abstract class Movement : MonoBehaviour
     public float maxSpeed { get { return movementData.maxSpeed; } }
     public float maxForce { get { return movementData.maxForce; } }
 
-    public virtual Vector3 Velocity { get; set; } = Vector3.zero;
     public virtual Vector3 Acceleration { get; set; } = Vector3.zero;
+    public virtual Vector3 Destination { get; set; } = Vector3.zero;
     public virtual Vector3 Direction { get { return Velocity.normalized; } }
+    public virtual Vector3 Velocity { get; set; } = Vector3.zero;
 
     public abstract void MoveTowards(Vector3 target);
     public abstract void ApplyForce(Vector3 force);
