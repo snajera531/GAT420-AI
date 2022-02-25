@@ -8,7 +8,9 @@ public class Need : MonoBehaviour
 	{
         ENERGY,
         HUNGER,
-        BLADDER
+        BLADDER, 
+        HYGIENE,
+        FUN
 	}
 
     public Type type;

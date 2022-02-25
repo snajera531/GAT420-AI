@@ -11,17 +11,36 @@ public class UtilityObject : MonoBehaviour
         [Range(-2, 2)] public float change;
     }
 
-    public float duration;
-    public Transform location;
-    public Effector[] effectors;
     public Dictionary<Need.Type, float> registry = new Dictionary<Need.Type, float>();
+    public Effector[] effectors;
+    public float duration;
+    public GameObject effect;
+    public Transform location;
+
+    [SerializeField] MeterUI meterPrefab;
+    MeterUI meter;
+
+    public bool Visible { get; set; }
+    public float Score { get; set; }
 
     void Start()
     {
+        meter = Instantiate(meterPrefab, GameObject.Find("Canvas").transform);
+        meter.name = name;
+        meter.text.text = name;
+
         foreach(var effector in effectors)
         {
             registry[effector.type] = effector.change;
         }
+    }
+
+    private void LateUpdate()
+    {
+        meter.gameObject.SetActive(Visible);
+        meter.worldPosition = transform.position + Vector3.up * 5;
+        meter.slider.value = Score;
+        Visible = false;
     }
 
     public float GetEffectorChange(Need.Type type)
