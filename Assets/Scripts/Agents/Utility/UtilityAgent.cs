@@ -50,19 +50,23 @@ public class UtilityAgent : Agent
                 {
                     uO.Visible = true;
                     uO.Score = GetUtilObjectScore(uO);
-                    //if (uO.Score > MIN_SCORE) 
+                    //if (uO.Score > MIN_SCORE)
                     utilObjects.Add(uO);
                 }
             }
-            //print(utilObjects.Count());
+            print(utilObjects.Count());
 
-            activeUtilObj = GetRandomUtilityObject(utilObjects.ToArray());
+            activeUtilObj = GetHighestUtilityObject(utilObjects.ToArray());
 
             //set first active util object to first util object
             //activeUtilObj = (utilObjects.Count == 0) ? null : utilObjects[0];
-            if (activeUtilObj != null)
+            if (activeUtilObj != null && activeUtilObj.cooldownTimer <= 0)
             {
                 StartCoroutine(ExecuteUtilObject(activeUtilObj));
+            }
+            else
+            {
+                activeUtilObj = null;
             }
         }
     }
@@ -79,27 +83,27 @@ public class UtilityAgent : Agent
         if (uO.cooldownTimer <= 0)
         {
             //go to location
+            movement.MoveTowards(uO.location.position);
             while (Vector3.Distance(transform.position, uO.location.position) > 1f)
             {
-                movement.MoveTowards(uO.location.position);
                 Debug.DrawLine(transform.position, uO.location.position, Color.green);
                 yield return null;
             }
-            
+
             //start effect
             if (uO.effect != null) uO.effect.SetActive(true);
-            
+
             //wait duration
             yield return new WaitForSecondsRealtime(uO.duration);
-            
+
             //stop effect
             if (uO.effect != null) uO.effect.SetActive(false);
-            
+
             ApplyUtilObject(uO);
             uO.cooldownTimer = 15;
-            activeUtilObj = null;
         }
         print("ahhhhhhhhhhhh");
+        activeUtilObj = null;
         yield return null;
     }
 
@@ -138,6 +142,7 @@ public class UtilityAgent : Agent
         UtilityObject highestUtilityObject = null;
         float highestScore = MIN_SCORE;
 
+        if (utilityObjects.Length > 0) highestUtilityObject = utilityObjects[0];
         foreach (var uO in utilityObjects)
         {
             float score = uO.Score;
@@ -149,6 +154,7 @@ public class UtilityAgent : Agent
             }
         }
 
+        print(highestUtilityObject);
         return highestUtilityObject;
     }
 

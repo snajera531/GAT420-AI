@@ -2557,7 +2557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Utility
-  distance: 21.5
+  distance: 40
   angle: 180
   sphereCastTransform: {fileID: 2122512887}
   numSphereCast: 30
