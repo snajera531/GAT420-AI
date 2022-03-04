@@ -185,8 +185,8 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0.48064438, y: 0.7674099}
+  m_AnchorMax: {x: 0.48064438, y: 0.7674099}
   m_AnchoredPosition: {x: 20, y: -30}
   m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0, y: 1}
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -356,7 +356,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Title
+  m_text: HAPPINESS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 99a8a46e3df81014db65a2bfba1937ed, type: 2}
   m_sharedMaterial: {fileID: -9117357046373364598, guid: 99a8a46e3df81014db65a2bfba1937ed, type: 2}

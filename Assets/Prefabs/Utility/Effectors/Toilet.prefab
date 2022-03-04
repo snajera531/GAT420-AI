@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2438714111248832398
 Transform:
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034156946855951433}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 1, z: 2.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2812024958255576084}
@@ -82,7 +82,8 @@ MonoBehaviour:
   effectors:
   - type: 2
     change: 2
-  duration: 5
+  cooldownTimer: 0
+  duration: 2
   effect: {fileID: 7519795840975035041}
   location: {fileID: 2438714111248832398}
   meterPrefab: {fileID: 0}
@@ -146,8 +147,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8272569, y: 1.7136714, z: 1.3181424}
-  m_Center: {x: -0.000000014901161, y: 0.8568357, z: 0.6512499}
+  m_Size: {x: 0.8272569, y: 2.751429, z: 1.3181424}
+  m_Center: {x: 0, y: 1.3757145, z: 0.6512499}
 --- !u!1 &2812024958255671350
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +245,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 0
 --- !u!4 &289721371751278114
 Transform:
@@ -272,7 +273,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7e388267830398d4394d54e5dfe0811c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

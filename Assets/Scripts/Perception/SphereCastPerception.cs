@@ -18,6 +18,7 @@ public class SphereCastPerception : Perception
             Quaternion rotation = Quaternion.AngleAxis(-angle + (angleOffset * i), Vector3.up);
             Vector3 direction = rotation * sphereCastTransform.forward;
             Ray ray = new Ray(sphereCastTransform.position, direction);
+
             if (Physics.SphereCast(ray, radius, out RaycastHit raycastHit, distance))
             {
                 if (tagName == "" || raycastHit.collider.CompareTag(tagName))

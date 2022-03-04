@@ -38,6 +38,6 @@ public class Need : MonoBehaviour
 
     public float GetMotive(float value)
     {
-        return Mathf.Clamp(curve.Evaluate(value), 0, 1);
+        return Mathf.Clamp(curve.Evaluate(value), -1, 1);
     }
 }

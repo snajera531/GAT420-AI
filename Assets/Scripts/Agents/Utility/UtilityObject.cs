@@ -13,6 +13,7 @@ public class UtilityObject : MonoBehaviour
 
     public Dictionary<Need.Type, float> registry = new Dictionary<Need.Type, float>();
     public Effector[] effectors;
+    public float cooldownTimer;
     public float duration;
     public GameObject effect;
     public Transform location;
@@ -33,6 +34,11 @@ public class UtilityObject : MonoBehaviour
         {
             registry[effector.type] = effector.change;
         }
+    }
+
+    private void Update()
+    {
+        cooldownTimer -= Time.deltaTime;
     }
 
     private void LateUpdate()

@@ -8,7 +8,7 @@ public class UtilityAgent : Agent
     [SerializeField] Perception perception;
     [SerializeField] MeterUI happyMeter;
 
-    const float MIN_SCORE = 0.1f;
+    const float MIN_SCORE = 0.2f;
 
     Need[] needs;
     UtilityObject activeUtilObj;
@@ -40,23 +40,27 @@ public class UtilityAgent : Agent
     {
         animator.SetFloat("Speed", movement.Velocity.magnitude);
 
-        if(activeUtilObj == null)
+        if (activeUtilObj == null)
         {
             var gameObjects = perception.GetGameObjects();
             List<UtilityObject> utilObjects = new List<UtilityObject>();
             foreach (var gO in gameObjects)
             {
-                if(gO.TryGetComponent<UtilityObject>(out UtilityObject uO))
+                if (gO.TryGetComponent(out UtilityObject uO))
                 {
                     uO.Visible = true;
                     uO.Score = GetUtilObjectScore(uO);
-                    if(uO.Score > MIN_SCORE) utilObjects.Add(uO);
+                    //if (uO.Score > MIN_SCORE) 
+                    utilObjects.Add(uO);
                 }
             }
+            //print(utilObjects.Count());
+
+            activeUtilObj = GetRandomUtilityObject(utilObjects.ToArray());
 
             //set first active util object to first util object
-            activeUtilObj = (utilObjects.Count == 0) ? null : utilObjects[0];
-            if(activeUtilObj != null)
+            //activeUtilObj = (utilObjects.Count == 0) ? null : utilObjects[0];
+            if (activeUtilObj != null)
             {
                 StartCoroutine(ExecuteUtilObject(activeUtilObj));
             }
@@ -71,29 +75,31 @@ public class UtilityAgent : Agent
 
     IEnumerator ExecuteUtilObject(UtilityObject uO)
     {
-        //go to location
-        movement.MoveTowards(uO.location.position);
-        while (Vector3.Distance(transform.position, uO.location.position) > 0.25)
+        print("dhsfajksgahg");
+        if (uO.cooldownTimer <= 0)
         {
-            Debug.DrawLine(transform.position, uO.location.position, Color.magenta);
-            yield return null;
+            //go to location
+            while (Vector3.Distance(transform.position, uO.location.position) > 1f)
+            {
+                movement.MoveTowards(uO.location.position);
+                Debug.DrawLine(transform.position, uO.location.position, Color.green);
+                yield return null;
+            }
+            
+            //start effect
+            if (uO.effect != null) uO.effect.SetActive(true);
+            
+            //wait duration
+            yield return new WaitForSecondsRealtime(uO.duration);
+            
+            //stop effect
+            if (uO.effect != null) uO.effect.SetActive(false);
+            
+            ApplyUtilObject(uO);
+            uO.cooldownTimer = 15;
+            activeUtilObj = null;
         }
-
-        print("start");
-
-        //start effect
-        if (uO.effect != null) uO.effect.SetActive(true);
-
-        //wait duration
-        yield return new WaitForSeconds(uO.duration);
-        print("stop");
-
-        //stop effect
-        if (uO.effect != null) uO.effect.SetActive(false);
-
-        ApplyUtilObject(uO);
-
-        activeUtilObj = null;
+        print("ahhhhhhhhhhhh");
         yield return null;
     }
 
@@ -104,7 +110,7 @@ public class UtilityAgent : Agent
             Need need = GetNeedByType(effector.type);
             if (need != null)
             {
-                need.input = effector.change;
+                need.input -= effector.change;
                 need.input = Mathf.Clamp(need.input, -1, 1);
             }
         }
@@ -114,10 +120,10 @@ public class UtilityAgent : Agent
     {
         float score = 0;
 
-        foreach(var effector in uO.effectors)
+        foreach (var effector in uO.effectors)
         {
             Need need = GetNeedByType(effector.type);
-            if(need != null)
+            if (need != null)
             {
                 float futureNeed = need.GetMotive(need.input + effector.change);
                 score += need.motive - futureNeed;
@@ -125,6 +131,60 @@ public class UtilityAgent : Agent
         }
 
         return score;
+    }
+
+    UtilityObject GetHighestUtilityObject(UtilityObject[] utilityObjects)
+    {
+        UtilityObject highestUtilityObject = null;
+        float highestScore = MIN_SCORE;
+
+        foreach (var uO in utilityObjects)
+        {
+            float score = uO.Score;
+            // if score > highest score then set new highest score and highest utility object
+            if (score > highestScore)
+            {
+                highestScore = score;
+                highestUtilityObject = uO;
+            }
+        }
+
+        return highestUtilityObject;
+    }
+
+    UtilityObject GetRandomUtilityObject(UtilityObject[] utilityObjects)
+    {
+        // evaluate all utility objects
+        float[] scores = new float[utilityObjects.Length];
+        float totalScore = 0;
+        for (int i = 0; i < utilityObjects.Length; i++)
+        {
+            float score = utilityObjects[i].Score;
+            scores[i] = score;
+            totalScore += score;
+        }
+
+        // select random utility object based on score
+        // the higher the score the greater the chance of being randomly selected
+        // <float random = value between 0 and totalScore>
+        UtilityObject randomUO = new UtilityObject();
+        float random = Random.Range(0, totalScore);
+        randomUO.Score = random;
+
+        for (int i = 0; i < scores.Length; i++)
+        {
+            // <check if random value is less than scores[i]>
+            if (randomUO.Score < scores[i])
+            {
+                // <return utilityObjects[i] if less than>
+                return utilityObjects[i];
+            }
+
+            // <subtract scores[i] from random value>
+            random -= scores[i];
+        }
+
+        return null;
     }
 
     Need GetNeedByType(Need.Type type)

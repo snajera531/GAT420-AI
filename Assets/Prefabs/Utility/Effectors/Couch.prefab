@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 0
 --- !u!4 &2543760676169661132
 Transform:
@@ -43,7 +43,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c5e620cd6bf19d043a8546598c8e06c2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -136,16 +136,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6568332577740919691}
+  - component: {fileID: 6568332577740427180}
   - component: {fileID: 6568332577741722539}
   - component: {fileID: 6568332577742688619}
-  - component: {fileID: 6568332577740427180}
+  - component: {fileID: 2004617655}
   m_Layer: 3
   m_Name: Couch
   m_TagString: Utility
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6568332577740919691
 Transform:
   m_ObjectHideFlags: 0
@@ -162,6 +163,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &6568332577740427180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6568332577740427179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1462c53a31f6b0d4bbf38ea8271a5208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectors:
+  - type: 0
+    change: 1
+  cooldownTimer: 0
+  duration: 1
+  effect: {fileID: 4380128394566186050}
+  location: {fileID: 8305368667370234374}
+  meterPrefab: {fileID: 0}
 --- !u!33 &6568332577741722539
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -211,25 +232,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6568332577740427180
-MonoBehaviour:
+--- !u!65 &2004617655
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6568332577740427179}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1462c53a31f6b0d4bbf38ea8271a5208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectors:
-  - type: 0
-    change: 1
-  duration: 3
-  effect: {fileID: 4380128394566186050}
-  location: {fileID: 8305368667370234374}
-  meterPrefab: {fileID: 0}
+  serializedVersion: 2
+  m_Size: {x: 4.1031694, y: 1.972825, z: 1.6430134}
+  m_Center: {x: 0, y: 0.9864125, z: 0}
 --- !u!1 &8305368667370234373
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +259,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8305368667370234374
 Transform:
@@ -254,7 +269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8305368667370234373}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 1.2500002}
+  m_LocalPosition: {x: 0, y: 1, z: 1.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6568332577740919691}
